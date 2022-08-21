@@ -1,7 +1,7 @@
 # Call To Action - Volunteer Job Board 
 Coding Dojo Bootcamp 2022 - Group Project (w/Neal Dreessen)
 
-**For this group project I was designated to conceptualization and actualization of the Front-end design in its entirety**
+**For this group project I was designated to the conceptualization and actualization of the Front-end design in its entirety**
 
 > Open space design with simple, but dynamic user interaction
 >
