@@ -46,3 +46,4 @@ Coding Dojo Bootcamp 2022 - Group Project (w/Neal Dreessen)
 ![Screen Shot 2022-08-20 at 8 49 06 PM](https://user-images.githubusercontent.com/98783544/185776886-c41e4738-5d84-4165-bd08-97c06f3f8987.png)
 
 > see "proposal_info" folder in project for details: proposal-README.md, ERD.png, and wireframe.pdf
+

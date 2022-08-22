@@ -67,6 +67,29 @@ def dashboard():
     print(all_jobs)
     return render_template('dashboard.html', one_user=one_user, all_jobs=all_jobs)
 
+
+@app.route('/past')
+def past_jobs():
+    """Past Jobs"""
+    if 'id' not in session:
+        flash("Please register or login to continue", "danger")
+        return redirect('/')
+    # Create data set to query user based on id to get name to display
+    data = {
+        'id': session['id']
+    }
+    # Pass the data dict to create_user method in class
+    one_user = user.User.get_user_by_id(data)
+    if one_user:
+        session['email'] = one_user.email
+        session['first_name'] = one_user.first_name
+        session['last_name'] = one_user.last_name
+        session['phone'] = one_user.phone
+    # Add all_jobs to the dashboard
+    all_jobs = job.Job.get_all_past_jobs()
+    print(all_jobs)
+    return render_template('past.html', one_user=one_user, all_jobs=all_jobs)
+
 @app.route('/job/show/<int:job_id>')
 def job_show_one(job_id):
     """Show the job on a page"""
@@ -81,6 +104,22 @@ def job_show_one(job_id):
     data_user = { 'id': session['id'] }
     # Call classmethods and render_template edit template with data filled in
     return render_template('show.html', one_job=job.Job.get_one_job(data), user=user.User.get_user_by_id(data_user), signups=signup.Signup.get_job_signups(data))
+
+@app.route('/job/show_past/<int:job_id>')
+def job_show_past_one(job_id):
+    """Show the job on a page"""
+    # Check that user is logged in
+    if 'id' not in session:
+        flash("Please register or login to continue", "danger")
+        return redirect('/')
+    # Create data dict based on job_id
+    # The keys must match exactly to the var in the query set
+    data = { 'id': job_id }
+    # Create additonal data dict for user
+    data_user = { 'id': session['id'] }
+    # Call classmethods and render_template edit template with data filled in
+    return render_template('show_past.html', one_job=job.Job.get_one_job(data), user=user.User.get_user_by_id(data_user), signups=signup.Signup.get_job_signups(data))
+
 
 # CRUD UPDATE ROUTES
 # Show job to edit with populated info
